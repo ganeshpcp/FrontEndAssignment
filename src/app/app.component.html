@@ -1,0 +1,32 @@
+<router-outlet></router-outlet>
+<div  [hidden] ="!myHide">
+  <h4>Please select  file</h4>
+  <table class='table' width="100%">
+    <tr><td>Select The File:</td><td class="text-left"><input #file type="file" multiple (change)="onFileChange($event)" /></td>
+      <td></td><td class="text-left"><button type="button" class="btn dark btn-outline" style="border:2px solid green"
+      (click)="uploadfile()"> Upload </button></td></tr>
+  </table>
+</div>
+<table class="table table-striped" *ngIf="excelData" [hidden] ="myHide">
+  <thead>
+  <tr>
+    <th scope="col">Sno</th>
+    <th scope="col">First Name</th>
+    <th scope="col">Sur Name</th>
+    <th scope="col">Issue Counts</th>
+    <th scope="col">Date of birth</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of excelData; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ d.firstname }}</td>
+      <td>{{ d.surname }}</td>
+      <td>{{ d.issuecount | number }}</td>
+      <td>{{ d.dateofbirth}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<button class="btn btn-info" type="submit"    (click)="Done()"  [hidden] ="myHide" >Done</button>
